@@ -1,7 +1,6 @@
-import { CommandInteraction } from 'discord.js';
+import { CommandInteraction, GuildMember } from 'discord.js';
 import { Command } from '..';
 import { ApplicationCommandOptionType } from 'discord-api-types';
-
 
 export default <Command>{
 	name: 'avatar',
@@ -13,7 +12,12 @@ export default <Command>{
 		required: false,
 	}],
 	async execute(interaction: CommandInteraction): Promise<void> {
-		const member = interaction.options.getMember('membro');
-		console.log(member);
+		const member = interaction.options.getMember('membro') as GuildMember;
+		if (member == null) {
+			interaction.reply(`${interaction.user.avatarURL({ format: 'png', size: 2048 })}`);
+		}
+		else {
+			interaction.reply(`${member.user.avatarURL({ format: 'png', size: 2048 })}`);
+		}
 	},
 };

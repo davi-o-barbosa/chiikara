@@ -3,5 +3,4 @@
 
 .env
 tsconfig.tsbuildinfo
-
 database.db
