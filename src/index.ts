@@ -37,7 +37,7 @@ eventFiles.forEach(async (file) => {
 	}
 });
 
-const commandFiles = FastGlob.sync(['commands/**.ts'], { cwd: 'src' });
+const commandFiles = FastGlob.sync(['commands/**/**.ts'], { cwd: 'src' });
 commandFiles.forEach(async (file) => {
 	const command = (await import('./' + file)).default;
 	commands.set(command.name, command);

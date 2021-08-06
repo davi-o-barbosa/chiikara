@@ -1,5 +1,5 @@
 import { CommandInteraction, GuildMember } from 'discord.js';
-import { Command } from '..';
+import { Command } from '../..';
 import { ApplicationCommandOptionType } from 'discord-api-types';
 
 export default <Command>{

@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "ts-node-dev src/index.ts",
-    "deploy": "ts-node-dev src/deploy.ts",
+    "dev": "tsnd --ignore-watch node_modules --inspect=0.0.0.0:9229 src/index.ts",
+    "deploy": "tsnd src/deploy.ts",
     "build": "tsc",
     "start": "node ./build/index.js",
     "database": "prisma generate | prisma db push"
