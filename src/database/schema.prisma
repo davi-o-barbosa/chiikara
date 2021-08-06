@@ -1,0 +1,31 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./database.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Guild {
+  id          String @id
+  log_channel String
+  bot_channel String
+}
+
+model LastMessage {
+  id        String?
+  guildId   String
+  channelId String?
+  userId    String
+  createdAt DateTime @default(now())
+
+  @@id([userId, guildId])
+}
+
+model HiddenChannel {
+  id      String  @id
+  userId  String
+  guildId String
+  self    Boolean @default(true)
+}

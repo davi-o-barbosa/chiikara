@@ -1,6 +1,7 @@
 import { Client, Intents, Collection, Interaction } from 'discord.js';
-import FastGlob from 'fast-glob';
+import { ApplicationCommandOptionType } from 'discord-api-types';
 import { config } from 'dotenv'; config();
+import FastGlob from 'fast-glob';
 
 // Interface para comandos.
 export interface Command {
@@ -8,7 +9,7 @@ export interface Command {
 	description: string,
 	options: Array<{
 		name: string,
-		type: string,
+		type: ApplicationCommandOptionType,
 		description: string,
 		required: boolean
 	}>,

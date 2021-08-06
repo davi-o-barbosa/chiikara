@@ -1,12 +1,13 @@
 Comandos:
 	Admin:
-		☐ Configuração do servidor
+		Configuração do servidor:
+			✔ Banco de dados @done(21-08-06 12:59)
 		☐ Kick
 		☐ Ban
 		☐ Log automático
 
 		Armazenar mensagens:
-			☐ Criar tabela no banco de dados
+			✔ Criar tabela no banco de dados @done(21-08-06 12:59)
 			☐ Armazenar dados da mensagem automaticamente
 			☐ Busca pela última mensagem por comando
 			Comando ausentes:
@@ -17,7 +18,7 @@ Comandos:
 		☐ Busca de anime
 		☐ Busca de mangá
 	Canais:
-		☐ Criar tabela no banco de dados
+		✔ Criar tabela no banco de dados @done(21-08-06 12:59)
 		☐ Comando para esconder
 		☐ Comando para exibir
 		☐ Comando para listar os canais escondidos
@@ -26,10 +27,10 @@ Comandos:
 		☐ Falar
 
 Database:
-	☐ Diagrama
-	☐ Criar tabelas
+	✔ Diagrama @done(21-08-06 12:59)
+	✔ Criar tabelas @done(21-08-06 12:59)
 	☐ Funções
 
 Github:
 	☐ README
-	☐ Wiki	
+	☐ Wiki
