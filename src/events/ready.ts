@@ -1,6 +1,6 @@
 export default {
 	name: 'ready',
-	onde: true,
+	once: true,
 	execute(): void {
 		console.log('Bot online');
 	},

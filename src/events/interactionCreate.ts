@@ -1,8 +1,18 @@
 import { Interaction } from 'discord.js';
+import { Bot } from '..';
 
-module.exports = {
+export default {
 	name: 'interactionCreate',
-	execute(interaction: Interaction): void {
-		console.log(interaction);
+	once: false,
+	async execute(interaction: Interaction, { commands }: Bot): Promise<void> {
+		if (!interaction.isCommand() || !commands.has(interaction.commandName)) return;
+
+		try {
+			await commands.get(interaction.commandName)?.execute(interaction);
+		}
+		catch (e) {
+			console.error(e);
+			await interaction.reply({ content: 'Houve um erro inesperado ao executar o comando.', ephemeral: true });
+		}
 	},
 };

@@ -1,0 +1,35 @@
+Comandos:
+	Admin:
+		☐ Configuração do servidor
+		☐ Kick
+		☐ Ban
+		☐ Log automático
+
+		Armazenar mensagens:
+			☐ Criar tabela no banco de dados
+			☐ Armazenar dados da mensagem automaticamente
+			☐ Busca pela última mensagem por comando
+			Comando ausentes:
+				☐ Listar todos os membros do servidor com [x] sem mensagens
+				☐ Enviar para o canal da moderação automaticamente
+
+	Anilist:
+		☐ Busca de anime
+		☐ Busca de mangá
+	Canais:
+		☐ Criar tabela no banco de dados
+		☐ Comando para esconder
+		☐ Comando para exibir
+		☐ Comando para listar os canais escondidos
+	Misc:
+		☐ Avatar
+		☐ Falar
+
+Database:
+	☐ Diagrama
+	☐ Criar tabelas
+	☐ Funções
+
+Github:
+	☐ README
+	☐ Wiki	
