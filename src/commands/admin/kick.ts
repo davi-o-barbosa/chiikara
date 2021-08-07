@@ -1,6 +1,5 @@
 import { CommandInteraction, GuildMember } from 'discord.js';
 import { Command } from '../..';
-import { base } from '../../helpers/embed';
 import { ApplicationCommandOptionType } from 'discord-api-types';
 
 export default <Command>{
