@@ -1,5 +1,6 @@
 import { CommandInteraction, GuildMember } from 'discord.js';
 import { Command } from '../..';
+import { image } from '../../helpers/embed';
 import { ApplicationCommandOptionType } from 'discord-api-types';
 
 export default <Command>{
@@ -12,12 +13,21 @@ export default <Command>{
 		required: false,
 	}],
 	async execute(interaction: CommandInteraction): Promise<void> {
-		const member = interaction.options.getMember('membro') as GuildMember;
-		if (member == null) {
-			interaction.reply(`${interaction.user.avatarURL({ format: 'png', size: 2048 })}`);
+		let member = interaction.options.getMember('membro') as GuildMember | null;
+		member = member ?? interaction.member as GuildMember;
+
+		const url = member.user.avatarURL({ format: 'png', size: 2048 });
+
+		if (url == null) {
+			interaction.reply({
+				content: 'Não encontrei nenhuma foto de perfil...',
+				ephemeral: true,
+			});
 		}
 		else {
-			interaction.reply(`${member.user.avatarURL({ format: 'png', size: 2048 })}`);
+			interaction.reply({
+				embeds: [await image(url, `Avatar - ${member.user.tag}`)],
+			});
 		}
 	},
 };

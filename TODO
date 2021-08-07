@@ -2,7 +2,7 @@ Comandos:
 	Admin:
 		Configuração do servidor:
 			✔ Banco de dados @done(21-08-06 12:59)
-		☐ Kick
+		✔ Kick @done(21-08-07 02:19)
 		☐ Ban
 		☐ Log automático
 
@@ -23,8 +23,8 @@ Comandos:
 		☐ Comando para exibir
 		☐ Comando para listar os canais escondidos
 	Misc:
-		☐ Avatar
-		☐ Falar
+		✔ Avatar @done(21-08-07 02:19)
+		✔ Falar @done(21-08-07 02:36)
 
 Database:
 	✔ Diagrama @done(21-08-06 12:59)
