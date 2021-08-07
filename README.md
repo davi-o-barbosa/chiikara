@@ -1,1 +1,17 @@
 # Chiikara
+WIP, ainda trabalhando nas funções antigas do bot.
+## Instruções para desenvolvimento:
+1) `yarn install` - Instalar as dependências do projeto.
+2) `yarn database` - Preparar a database com o [Prisma](https://www.prisma.io/).
+3) Crie um arquivo `.env` no root do projeto com as variáveis necessárias:
+```
+TOKEN= Token do bot
+CLIENTID= ID do servidor do Discord que você usará para desenvolvimento
+GUILDID= ID do cliente do bot
+```
+4) `yarn dev` - Bot será executado usando [ts-node-dev](https://www.npmjs.com/package/ts-node-dev), onde a cada mudança nos arquivos o bot será reiniciado.
+
+## Instruções para uso:
+1) Execute os passos 1, 2 e 3 das instruções para desenvolvimento.
+2) `yarn build` - Compilar o código em typescript.
+3) `yarn start` - Executar o código.
