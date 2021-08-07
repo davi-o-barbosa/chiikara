@@ -9,9 +9,10 @@ TOKEN= Token do bot
 CLIENTID= ID do servidor do Discord que você usará para desenvolvimento
 GUILDID= ID do cliente do bot
 ```
-4) `yarn dev` - Bot será executado usando [ts-node-dev](https://www.npmjs.com/package/ts-node-dev), onde a cada mudança nos arquivos o bot será reiniciado.
+4) `yarn deploy` - Essa comando executa uma instância do bot e realiza o reploy dos comandos no servidor configurado no arquivo acima. Para realizar um deploy global use `yarn deploy -global`.
+5) `yarn dev` - Bot será executado usando [ts-node-dev](https://www.npmjs.com/package/ts-node-dev), onde a cada mudança nos arquivos o bot será reiniciado.
 
 ## Instruções para uso:
-1) Execute os passos 1, 2 e 3 das instruções para desenvolvimento.
+1) Execute os passos acima até o número **4.**
 2) `yarn build` - Compilar o código em typescript.
 3) `yarn start` - Executar o código.

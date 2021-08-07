@@ -20,18 +20,17 @@ export default <Command>{
 		const channel = interaction.options.getChannel('canal') as GuildChannel;
 		const message = interaction.options.getString('mensagem') as string;
 
-		if (channel.isText()) {
-			await channel.send(message);
-			await interaction.reply({
-				content: 'Mensagem enviada com sucesso!',
-				ephemeral: true,
-			});
-		}
-		else {
-			await interaction.reply({
+		if (!channel.isText()) {
+			return await interaction.reply({
 				content: 'Preciso que você marque um canal de texto!',
 				ephemeral: true,
 			});
 		}
+
+		await channel.send(message);
+		return await interaction.reply({
+			content: 'Mensagem enviada com sucesso!',
+			ephemeral: true,
+		});
 	},
 };

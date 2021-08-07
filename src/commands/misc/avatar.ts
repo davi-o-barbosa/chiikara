@@ -19,15 +19,14 @@ export default <Command>{
 		const url = member.user.avatarURL({ format: 'png', size: 2048 });
 
 		if (url == null) {
-			interaction.reply({
-				content: 'Não encontrei nenhuma foto de perfil...',
+			return await interaction.reply({
+				content: 'Esse usuário não tem uma foto de perfil.',
 				ephemeral: true,
 			});
 		}
-		else {
-			interaction.reply({
-				embeds: [await image(url, `Avatar - ${member.user.tag}`)],
-			});
-		}
+
+		await interaction.reply({
+			embeds: [await image(url, `Avatar - ${member.user.tag}`)],
+		});
 	},
 };

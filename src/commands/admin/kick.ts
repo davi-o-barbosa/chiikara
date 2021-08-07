@@ -22,31 +22,31 @@ export default <Command>{
 		const reason = interaction.options.getString('motivo');
 
 		if (member == interaction.member) {
-			await interaction.reply({
+			return await interaction.reply({
 				content: 'Você não pode se kickar do servidor.',
 				ephemeral: true,
 			});
 		}
-		else if (member?.id == interaction.client.user?.id) {
-			await interaction.reply({
+
+		if (member?.id == interaction.client.user?.id) {
+			return await interaction.reply({
 				content: 'Ei, você não pode mandar eu me kickar!',
 				ephemeral: true,
 			});
 		}
-		else {
-			const kicked = await member?.kick(reason ?? undefined);
-			if (kicked != undefined) {
-				await interaction.reply({
-					content: `**${kicked?.user.tag}** foi kickado do servidor`,
-					ephemeral: true,
-				});
-			}
-			else {
-				await interaction.reply({
-					content: 'Não pude kickar essa pessoa.',
-					ephemeral: true,
-				});
-			}
+
+		const kicked = await member?.kick(reason ?? undefined);
+
+		if (kicked == undefined) {
+			return await interaction.reply({
+				content: 'Não pude kickar essa pessoa.',
+				ephemeral: true,
+			});
 		}
+
+		return await interaction.reply({
+			content: `**${kicked?.user.tag}** foi kickado do servidor`,
+			ephemeral: true,
+		});
 	},
 };
