@@ -12,7 +12,10 @@ export default {
 		}
 		catch (e) {
 			console.error(e);
-			await interaction.reply({ content: 'Houve um erro inesperado ao executar o comando.', ephemeral: true });
+			await interaction.reply({
+				content: 'Houve um erro inesperado ao executar o seu comando.',
+				ephemeral: true,
+			});
 		}
 	},
 };

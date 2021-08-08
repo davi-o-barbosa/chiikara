@@ -19,7 +19,7 @@ export default <Command>{
 	}],
 	async execute(interaction: CommandInteraction): Promise<void> {
 		const member = interaction.options.getMember('membro') as GuildMember | null;
-		const reason = interaction.options.getString('motivo');
+		const reason = interaction.options.getString('motivo') as string | undefined;
 
 		if (member == interaction.member) {
 			return await interaction.reply({
@@ -35,7 +35,7 @@ export default <Command>{
 			});
 		}
 
-		const kicked = await member?.kick(reason ?? undefined);
+		const kicked = await member?.kick(reason);
 
 		if (kicked == undefined) {
 			return await interaction.reply({
