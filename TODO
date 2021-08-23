@@ -15,13 +15,15 @@ Comandos:
 				☐ Enviar para o canal da moderação automaticamente
 
 	Anilist:
-		☐ Busca de anime
+		✔ Busca de anime @done(21-08-10 15:48)
 		☐ Busca de mangá
+
 	Canais:
 		✔ Criar tabela no banco de dados @done(21-08-06 12:59)
 		☐ Comando para esconder
 		☐ Comando para exibir
 		☐ Comando para listar os canais escondidos
+		
 	Misc:
 		✔ Avatar @done(21-08-07 02:19)
 		✔ Falar @done(21-08-07 02:36)

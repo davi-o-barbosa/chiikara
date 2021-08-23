@@ -1,5 +1,5 @@
 import { MessageEmbed } from 'discord.js';
-import fetch, { Response } from 'node-fetch';
+import fetch from 'node-fetch';
 
 const statusDict: { [key: string]: string } = {
 	'FINISHED': 'Finalizado',
@@ -68,7 +68,6 @@ export async function getAnime(anime: string): Promise<MessageEmbed | null> {
 		.addField('Avaliação', meanScore, true)
 		.addField('Episódios:', episodes, true)
 		.addField('Status', statusDict[data.status] + streaming, true);
-
 
 	if (data.status === 'RELEASING') {
 		if (!data.nextAiringEpisode.airingAt) return embed;
