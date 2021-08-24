@@ -1,4 +1,13 @@
-import { CommandInteraction, GuildMember, MessageEmbed, TextChannel, Message } from 'discord.js';
+import {
+	CommandInteraction,
+	GuildMember,
+	MessageEmbed,
+	TextChannel,
+	Message,
+	MessageActionRow,
+	MessageButton,
+} from 'discord.js';
+
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { PrismaClient } from '@prisma/client';
 
@@ -45,8 +54,17 @@ export default {
 
 		if (!fetchedMessage) return;
 
+		const row = new MessageActionRow()
+			.addComponents(
+				new MessageButton()
+					.setLabel('Clique para ir até a mensagem')
+					.setStyle('LINK')
+					.setURL(fetchedMessage.url),
+			);
+
 		return await interaction.reply({
 			embeds: [generateEmbed(fetchedMessage)],
+			components: [row],
 		});
 	},
 };

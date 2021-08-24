@@ -11,7 +11,7 @@ Comandos:
 			✔ Armazenar dados da mensagem automaticamente @done(21-08-24 13:28)
 			✔ Busca pela última mensagem por comando @done(21-08-24 13:28)
 			Comando ausentes:
-				☐ Listar todos os membros do servidor com [x] sem mensagens
+				☐ Listar todos os membros do servidor com [x] dias sem mensagens
 				☐ Enviar para o canal da moderação automaticamente
 
 	Anilist:
@@ -27,11 +27,12 @@ Comandos:
 	Misc:
 		✔ Avatar @done(21-08-07 02:19)
 		✔ Falar @done(21-08-07 02:36)
+		Dados de RPG (Pedido do Pedro):
+			☐ Função básica.
 
 Database:
 	✔ Diagrama @done(21-08-06 12:59)
 	✔ Criar tabelas @done(21-08-06 12:59)
-	☐ Funções
 
 Github:
 	☐ README

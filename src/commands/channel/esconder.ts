@@ -34,7 +34,7 @@ export default {
 		const permissions = channel.permissionOverwrites;
 		await permissions.edit(interaction.user.id, {
 			VIEW_CHANNEL: false,
-		});
+		}, { reason: `Usuário ${interaction.user.tag} usou o comando para esconder o canal.` });
 
 		hiddenChannel = await prisma.hiddenChannel.create({
 			data: {
