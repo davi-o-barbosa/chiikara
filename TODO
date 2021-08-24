@@ -1,4 +1,7 @@
 Comandos:
+
+	☐ Melhora visual das respostas.
+
 	Admin:
 		Configuração do servidor:
 			✔ Banco de dados @done(21-08-06 12:59)
@@ -22,7 +25,7 @@ Comandos:
 		✔ Criar tabela no banco de dados @done(21-08-06 12:59)
 		✔ Comando para esconder @done(21-08-24 15:22)
 		✔ Comando para exibir @done(21-08-24 15:22)
-		☐ Comando para listar os canais escondidos
+		✘ Comando para listar os canais escondidos @cancelled(21-08-24 17:30)
 		
 	Misc:
 		✔ Avatar @done(21-08-07 02:19)
