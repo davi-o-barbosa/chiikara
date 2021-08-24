@@ -1,17 +1,18 @@
 import { CommandInteraction } from 'discord.js';
-import { ApplicationCommandOptionType } from 'discord-api-types';
-import { Command } from '../..';
+import { SlashCommandBuilder } from '@discordjs/builders';
 import { getAnime } from '../../helpers/anilist';
 
-export default <Command>{
-	name: 'anime',
-	description: 'Pesquise informações sobre um anime.',
-	options: [{
-		name: 'anime',
-		type: ApplicationCommandOptionType.String,
-		description: 'Nome do anime para buscar',
-		required: true,
-	}],
+export default {
+	data: new SlashCommandBuilder()
+		.setName('anime')
+		.setDescription('Pesquise informações sobre um anime.')
+		.addStringOption((option) =>
+			option
+				.setName('anime')
+				.setDescription('Nome do anime para buscar')
+				.setRequired(true),
+		),
+
 	async execute(interaction: CommandInteraction): Promise<void> {
 		const animeName = interaction.options.getString('anime') as string;
 		const embed = await getAnime(animeName);

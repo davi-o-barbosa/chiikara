@@ -10,8 +10,7 @@ async function prepareCommands(): Promise<Array<Command>> {
 
 	for (const file of commandFiles) {
 		const importedCommand = (await import('./' + file)).default;
-		delete importedCommand.execute;
-		commands.push(importedCommand);
+		commands.push(importedCommand.data.toJSON());
 	}
 
 	return commands;

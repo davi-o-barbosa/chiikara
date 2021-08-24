@@ -1,21 +1,23 @@
-import { ApplicationCommandOptionType } from 'discord-api-types';
+import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction, GuildChannel } from 'discord.js';
-import { Command } from '../..';
 
-export default <Command>{
-	name: 'falar',
-	description: 'Reproduzir uma mensagem em qualquer canal.',
-	options: [{
-		name: 'canal',
-		type: ApplicationCommandOptionType.Channel,
-		description: 'O canal em que a mensagem será enviada',
-		required: true,
-	}, {
-		name: 'mensagem',
-		type: ApplicationCommandOptionType.String,
-		description: 'A mensagem a ser enviada',
-		required: true,
-	}],
+export default {
+	data: new SlashCommandBuilder()
+		.setName('falar')
+		.setDescription('Reproduzir uma mensagem em qualquer canal.')
+		.addChannelOption((option) =>
+			option
+				.setName('canal')
+				.setDescription('O canal em que a mensagem será enviada')
+				.setRequired(true),
+		)
+		.addStringOption((option) =>
+			option
+				.setName('mensagem')
+				.setDescription('A mensagem a ser enviada')
+				.setRequired(true),
+		),
+
 	async execute(interaction: CommandInteraction): Promise<void> {
 		const channel = interaction.options.getChannel('canal') as GuildChannel;
 		const message = interaction.options.getString('mensagem') as string;

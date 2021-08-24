@@ -5,15 +5,15 @@ export default {
 	name: 'messageCreate',
 	once: false,
 	async execute(message: Message): Promise<void> {
-		if (message.interaction) return;
+		if (message.interaction || message.author.bot || !message.guild) return;
 
 		const prisma = new PrismaClient();
 
 		await prisma.lastMessage.upsert({
 			where: {
 				userId_guildId: {
-					userId: message.member?.id as string,
-					guildId: message.guild?.id as string,
+					userId: message.author.id,
+					guildId: message.guild.id,
 				},
 			},
 			update: {
@@ -24,8 +24,8 @@ export default {
 			create: {
 				id: message.id,
 				channelId: message.channel.id,
-				guildId: message.guild?.id as string,
-				userId: message.member?.id as string,
+				guildId: message.guild.id,
+				userId: message.author.id,
 			},
 		});
 

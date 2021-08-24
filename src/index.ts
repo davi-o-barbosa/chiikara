@@ -1,18 +1,11 @@
 import { Client, Intents, Collection, Interaction } from 'discord.js';
-import { ApplicationCommandOptionType } from 'discord-api-types';
+import { SlashCommandBuilder } from '@discordjs/builders';
 import { config } from 'dotenv'; config();
 import FastGlob from 'fast-glob';
 
 // Interface para comandos.
 export interface Command {
-	name: string,
-	description: string,
-	options: Array<{
-		name: string,
-		type: ApplicationCommandOptionType,
-		description: string,
-		required: boolean
-	}>,
+	data: SlashCommandBuilder
 	execute: (interaction: Interaction) => Promise<void>
 }
 
@@ -40,7 +33,7 @@ eventFiles.forEach(async (file) => {
 const commandFiles = FastGlob.sync(['commands/**/**.ts'], { cwd: 'src' });
 commandFiles.forEach(async (file) => {
 	const command = (await import('./' + file)).default;
-	commands.set(command.name, command);
+	commands.set(command.data.name, command);
 });
 
 client.login(process.env.TOKEN);

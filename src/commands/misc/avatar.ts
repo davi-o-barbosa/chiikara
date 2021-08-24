@@ -1,17 +1,19 @@
 import { CommandInteraction, GuildMember } from 'discord.js';
-import { Command } from '../..';
+import { SlashCommandBuilder } from '@discordjs/builders';
 import { image } from '../../helpers/embed';
-import { ApplicationCommandOptionType } from 'discord-api-types';
 
-export default <Command>{
-	name: 'avatar',
-	description: 'Vê o avatar de um membro ou si mesmo',
-	options: [{
-		name: 'membro',
-		type: ApplicationCommandOptionType.User,
-		description: 'O usuário que deseja ver o avatar',
-		required: false,
-	}],
+
+export default {
+	data: new SlashCommandBuilder()
+		.setName('avatar')
+		.setDescription('Vê o avatar de um membro ou si mesmo')
+		.addUserOption((option) =>
+			option
+				.setName('membro')
+				.setDescription('O usuário que deseja ver o avatar')
+				.setRequired(false),
+		),
+
 	async execute(interaction: CommandInteraction): Promise<void> {
 		let member = interaction.options.getMember('membro') as GuildMember | null;
 		member = member ?? interaction.member as GuildMember;

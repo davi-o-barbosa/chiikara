@@ -16,10 +16,11 @@
     "schema": "src/database/schema.prisma"
   },
   "dependencies": {
+    "@discordjs/builders": "^0.5.0",
     "@discordjs/rest": "^0.1.0-canary.0",
     "@prisma/client": "^2.28.0",
     "@types/node-fetch": "^2.5.12",
-    "discord.js": "^13.0.0",
+    "discord.js": "^13.1.0",
     "dotenv": "^10.0.0",
     "fast-glob": "^3.2.7",
     "node-fetch": "^2.6.1",

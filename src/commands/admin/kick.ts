@@ -1,22 +1,23 @@
 import { CommandInteraction, GuildMember } from 'discord.js';
-import { Command } from '../..';
-import { ApplicationCommandOptionType } from 'discord-api-types';
+import { SlashCommandBuilder } from '@discordjs/builders';
 
-export default <Command>{
-	name: 'kick',
-	description: 'Remove um membro do servidor',
-	options: [{
-		name: 'membro',
-		type: ApplicationCommandOptionType.User,
-		description: 'O usuário a ser removido',
-		required: true,
-	},
-	{
-		name: 'motivo',
-		type: ApplicationCommandOptionType.String,
-		description: 'Motivo para a remoção do usuário',
-		required: false,
-	}],
+export default {
+	data: new SlashCommandBuilder()
+		.setName('kick')
+		.setDescription('Remove um membro do servidor')
+		.addUserOption((option) =>
+			option
+				.setName('membro')
+				.setDescription('O usuário a ser removido')
+				.setRequired(true),
+		)
+		.addStringOption((option) =>
+			option
+				.setName('motivo')
+				.setDescription('Motivo para a remoção do usuário')
+				.setRequired(false),
+		),
+
 	async execute(interaction: CommandInteraction): Promise<void> {
 		const member = interaction.options.getMember('membro') as GuildMember | null;
 		const reason = interaction.options.getString('motivo') as string | undefined;
