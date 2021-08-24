@@ -33,19 +33,21 @@ export default {
 			});
 		}
 
-		const channel = await interaction.guild?.channels.fetch(lMessage.channelId) as TextChannel | null;
+		const channel = await interaction.guild?.channels.fetch(lMessage.channelId).catch(async () => {
+			await interaction.reply({ content: 'O canal dessa mensagem não está mais disponível.', ephemeral: true });
+		}) as TextChannel;
 
-		if (!channel) return await interaction.reply({ content: 'O canal dessa mensagem não está mais disponível.', ephemeral: true });
+		if (!channel) return;
 
-		try {
-			const fetchedMessage = await channel.messages.fetch(lMessage.id);
-			return await interaction.reply({
-				embeds: [generateEmbed(fetchedMessage)],
-			});
-		}
-		catch (e) {
+		const fetchedMessage = await channel.messages.fetch(lMessage.id).catch(async () => {
 			return await interaction.reply({ content: 'A mensagem enviada por este usuário não existe mais.', ephemeral: true });
-		}
+		}) as Message;
+
+		if (!fetchedMessage) return;
+
+		return await interaction.reply({
+			embeds: [generateEmbed(fetchedMessage)],
+		});
 	},
 };
 
@@ -55,7 +57,8 @@ function generateEmbed(message: Message): MessageEmbed {
 
 	return new MessageEmbed()
 		.setTitle(`Última mensagem do(a) ${message.author.tag}`)
-		.addField('Conteúdo', message.content)
+		.addField('Conteúdo', message.content, true)
+		.addField('Canal', `<#${message.channel.id}>`, true)
 		.addField('Data', string)
 		.setColor('RANDOM')
 		.setThumbnail(message.author.avatarURL() ?? 'https://discord.com/assets/9f6f9cd156ce35e2d94c0e62e3eff462.png');

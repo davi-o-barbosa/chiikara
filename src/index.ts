@@ -1,8 +1,8 @@
 import { Client, Intents, Collection, Interaction } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { config } from 'dotenv'; config();
-import FastGlob from 'fast-glob';
 import { PrismaClient } from '@prisma/client';
+import FastGlob from 'fast-glob';
 
 // Interface para comandos.
 export interface Command {

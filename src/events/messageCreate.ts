@@ -27,7 +27,5 @@ export default {
 				userId: message.author.id,
 			},
 		});
-
-		console.log(message.content);
 	},
 };

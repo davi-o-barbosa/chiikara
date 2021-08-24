@@ -24,8 +24,10 @@ model LastMessage {
 }
 
 model HiddenChannel {
-  id      String  @id
-  userId  String
-  guildId String
-  self    Boolean @default(true)
+  id          String  @id @default(uuid())
+  channelName String
+  channelId   String
+  userId      String
+  guildId     String
+  self        Boolean @default(true)
 }

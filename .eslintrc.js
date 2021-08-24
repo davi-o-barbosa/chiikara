@@ -16,6 +16,8 @@ module.exports = {
 		'@typescript-eslint',
 	],
 	'rules': {
+		'indent': 'off',
+		'@typescript-eslint/indent': ['error', 'tab'],
 		'brace-style': ['error', 'stroustrup', { 'allowSingleLine': true }],
 		'comma-dangle': ['error', 'always-multiline'],
 		'comma-spacing': 'error',
@@ -23,7 +25,6 @@ module.exports = {
 		'curly': ['error', 'multi-line', 'consistent'],
 		'dot-location': ['error', 'property'],
 		'handle-callback-err': 'off',
-		'indent': ['error', 'tab'],
 		'max-nested-callbacks': ['error', { 'max': 4 }],
 		'max-statements-per-line': ['error', { 'max': 2 }],
 		'no-console': 'off',

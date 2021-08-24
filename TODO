@@ -8,8 +8,8 @@ Comandos:
 
 		Armazenar mensagens:
 			✔ Criar tabela no banco de dados @done(21-08-06 12:59)
-			☐ Armazenar dados da mensagem automaticamente
-			☐ Busca pela última mensagem por comando
+			✔ Armazenar dados da mensagem automaticamente @done(21-08-24 13:28)
+			✔ Busca pela última mensagem por comando @done(21-08-24 13:28)
 			Comando ausentes:
 				☐ Listar todos os membros do servidor com [x] sem mensagens
 				☐ Enviar para o canal da moderação automaticamente
