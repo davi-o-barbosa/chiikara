@@ -14,9 +14,9 @@ model Guild {
 }
 
 model LastMessage {
-  id        String?
+  id        String
   guildId   String
-  channelId String?
+  channelId String
   userId    String
   createdAt DateTime @default(now())
 
