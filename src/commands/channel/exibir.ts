@@ -1,11 +1,11 @@
-import { CommandInteraction, MessageActionRow, MessageSelectMenu, SelectMenuInteraction, Message, Interaction, PermissionOverwrites } from 'discord.js';
+import { CommandInteraction, MessageActionRow, MessageSelectMenu, SelectMenuInteraction, Message, PermissionOverwrites } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { HiddenChannel, PrismaClient } from '@prisma/client';
 
 export default {
 	data: new SlashCommandBuilder()
 		.setName('exibir')
-		.setDescription('Exibe um menu para você exibir seus canais de volta.'),
+		.setDescription('Exibe um menu para você exibir os canais previamente escondidos.'),
 
 	async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
 		const hiddenChannel = await prisma.hiddenChannel.findMany({
@@ -14,6 +14,8 @@ export default {
 				guildId: interaction.guild?.id,
 			},
 		});
+
+		if (hiddenChannel.length === 0) return await interaction.reply({ content: 'Você não tem canais escondidos', ephemeral: true });
 
 		const options = [];
 		for (const channel of hiddenChannel) {
@@ -31,7 +33,7 @@ export default {
 			);
 
 		const message = await interaction.reply({
-			content: 'Escolha o canal que deseja exibir novamente: ',
+			content: 'Escolha os canais que deseja ver novamente: ',
 			components: [row],
 			fetchReply: true,
 		}) as Message;
@@ -66,7 +68,7 @@ export default {
 			const permissions = channel.permissionOverwrites;
 			await permissions.edit(interaction.user.id, {
 				VIEW_CHANNEL: null,
-			}, { reason: `Usuário ${interaction.user.tag} usou o comando para exibir o canal.` });
+			}, { reason: `${interaction.user.tag} usou o comando para exibir o canal.` });
 
 			const newPerms = permissions.cache.get(interaction.user.id) as PermissionOverwrites;
 			const bitfieldValue = newPerms.deny.bitfield + newPerms.allow.bitfield;
@@ -74,5 +76,7 @@ export default {
 				await permissions.delete(interaction.user.id, 'Deletando o registro de permissões do usuário já que se encontra vazio.');
 			}
 		}
+
+		await interaction.editReply({ content: 'Canais exibidos com sucesso!', components: [] });
 	},
 };
