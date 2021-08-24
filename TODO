@@ -20,8 +20,8 @@ Comandos:
 
 	Canais:
 		✔ Criar tabela no banco de dados @done(21-08-06 12:59)
-		☐ Comando para esconder
-		☐ Comando para exibir
+		✔ Comando para esconder @done(21-08-24 15:22)
+		✔ Comando para exibir @done(21-08-24 15:22)
 		☐ Comando para listar os canais escondidos
 		
 	Misc:
