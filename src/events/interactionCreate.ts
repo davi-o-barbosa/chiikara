@@ -4,11 +4,11 @@ import { Bot } from '..';
 export default {
 	name: 'interactionCreate',
 	once: false,
-	async execute(interaction: Interaction, { commands }: Bot): Promise<void> {
+	async execute(interaction: Interaction, { commands, prisma }: Bot): Promise<void> {
 		if (!interaction.isCommand() || !commands.has(interaction.commandName)) return;
 
 		try {
-			await commands.get(interaction.commandName)?.execute(interaction);
+			await commands.get(interaction.commandName)?.execute(interaction, prisma);
 		}
 		catch (e) {
 			console.error(e);

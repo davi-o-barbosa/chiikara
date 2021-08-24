@@ -2,22 +2,26 @@ import { Client, Intents, Collection, Interaction } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { config } from 'dotenv'; config();
 import FastGlob from 'fast-glob';
+import { PrismaClient } from '@prisma/client';
 
 // Interface para comandos.
 export interface Command {
 	data: SlashCommandBuilder
-	execute: (interaction: Interaction) => Promise<void>
+	execute: (interaction: Interaction, prisma: PrismaClient) => Promise<void>
 }
 
 // Interface para armazenar dados importantes para o funcionamento do bot.
 export interface Bot {
 	client: Client<boolean>,
-	commands: Collection<string, Command>
+	commands: Collection<string, Command>,
+	prisma: PrismaClient
 }
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const commands = new Collection<string, Command>();
-const bot: Bot = { client, commands };
+const prisma = new PrismaClient();
+
+const bot: Bot = { client, commands, prisma };
 
 const eventFiles = FastGlob.sync(['events/**.ts'], { cwd: 'src' });
 eventFiles.forEach(async (file) => {

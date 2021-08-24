@@ -1,15 +1,14 @@
 import { Message } from 'discord.js';
 import { PrismaClient } from '@prisma/client';
+import { Bot } from '../index';
 
 export default {
 	name: 'messageCreate',
 	once: false,
-	async execute(message: Message): Promise<void> {
+	async execute(message: Message, bot: Bot): Promise<void> {
 		if (message.interaction || message.author.bot || !message.guild) return;
 
-		const prisma = new PrismaClient();
-
-		await prisma.lastMessage.upsert({
+		await bot.prisma.lastMessage.upsert({
 			where: {
 				userId_guildId: {
 					userId: message.author.id,
