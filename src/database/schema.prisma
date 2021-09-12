@@ -7,10 +7,22 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Guild {
-  id          String @id
-  log_channel String
-  bot_channel String
+model GuildModRoles {
+  id      String @id @default(uuid())
+  guildId String
+  roleId  String
+}
+
+model GuildBotChannels {
+  id        String @id @default(uuid())
+  guildId   String
+  channelId String
+}
+
+model GuildProtectedChannels {
+  id        String @id @default(uuid())
+  guildId   String
+  channelId String
 }
 
 model LastMessage {

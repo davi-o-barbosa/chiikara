@@ -5,7 +5,7 @@ import { Command } from './index';
 import FastGlob from 'fast-glob';
 
 async function prepareCommands(): Promise<Array<Command>> {
-	const commandFiles = await FastGlob(['commands/**/**.ts'], { cwd: 'src' });
+	const commandFiles = await FastGlob(['commands/*/**.ts'], { cwd: 'src' });
 	const commands: Command[] = [];
 
 	for (const file of commandFiles) {

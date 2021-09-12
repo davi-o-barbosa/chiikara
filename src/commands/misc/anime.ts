@@ -8,18 +8,18 @@ export default {
 		.setDescription('Pesquise informações sobre um anime.')
 		.addStringOption((option) =>
 			option
-				.setName('anime')
+				.setName('nome')
 				.setDescription('Nome do anime para buscar')
 				.setRequired(true),
 		),
 
 	async execute(interaction: CommandInteraction): Promise<void> {
-		const animeName = interaction.options.getString('anime') as string;
+		const animeName = interaction.options.getString('nome') as string;
 		const embed = await getAnime(animeName);
 
 		if (!embed) {
 			return await interaction.reply({
-				content: 'Desculpa, não pude encontrar os dados do anime!',
+				content: 'Desculpa, não pude encontrar o anime!',
 				ephemeral: true,
 			});
 		}
