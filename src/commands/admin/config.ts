@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import bot from './config/bot';
 import mod from './config/mod';
+import protect from './config/protect';
 
 export default {
 	data: new SlashCommandBuilder()
@@ -119,6 +120,7 @@ export default {
 				await mod(interaction, prisma);
 				break;
 			case 'proteger':
+				await protect(interaction, prisma);
 				break;
 			default:
 				return;
