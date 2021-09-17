@@ -17,7 +17,8 @@ export default {
 				.setDescription('Motivo para a remoção do usuário')
 				.setRequired(false),
 		),
-
+	bot: false,
+	mod: true,
 	async execute(interaction: CommandInteraction): Promise<void> {
 		const member = interaction.options.getMember('membro') as GuildMember | null;
 		const reason = interaction.options.getString('motivo') as string | undefined;

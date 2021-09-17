@@ -29,8 +29,19 @@ const rest = new REST({ version: '9' }).setToken(process.env.TOKEN as string);
 				{ body: commands },
 			);
 		}
+		else if (args == '-clear') {
+			console.log('\n[1] Limpando todos os comandos registrados no servidor.');
+			await rest.put(
+				Routes.applicationGuildCommands(process.env.CLIENTID as `${bigint}`, process.env.GUILDID as `${bigint}`),
+				{ body: [] },
+			);
+		}
 		else if (args == '-global') {
 			console.log('\n[1] Realizando deploy global.');
+			await rest.put(
+				Routes.applicationCommands(process.env.CLIENTID as `${bigint}`),
+				{ body: commands },
+			);
 		}
 		console.log('[2] Deploy realizado com sucesso.\n');
 	}

@@ -108,7 +108,8 @@ export default {
 						.setDescription('Ver os cargos configurados.'),
 				),
 		),
-
+	bot: false,
+	mod: true,
 	async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
 		const subCommandGroup = interaction.options.getSubcommandGroup();
 

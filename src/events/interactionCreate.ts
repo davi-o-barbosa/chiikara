@@ -6,9 +6,21 @@ export default {
 	once: false,
 	async execute(interaction: Interaction, { commands, prisma }: Bot): Promise<void> {
 		if (!interaction.isCommand() || !commands.has(interaction.commandName)) return;
+		if (!interaction.guildId) return await interaction.reply({ content: 'Por favor, use meus comandos dentro de servidores.' });
+
+		const guildBotChannels = await prisma.guildBotChannels.findMany({
+			where: { guildId: interaction.guild?.id },
+		});
 
 		try {
-			await commands.get(interaction.commandName)?.execute(interaction, prisma);
+			const command = commands.get(interaction.commandName);
+			if (!command) return;
+
+			if (command.bot && !guildBotChannels.find(obj => obj.channelId === interaction?.channel?.id)) {
+				return await interaction.reply({ content: 'Você só pode usar esse comando no canal de bots.', ephemeral: true });
+			}
+
+			await command.execute(interaction, prisma);
 		}
 		catch (e) {
 			console.error(e);

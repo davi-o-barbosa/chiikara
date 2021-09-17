@@ -1,5 +1,4 @@
 import { Message } from 'discord.js';
-import { PrismaClient } from '@prisma/client';
 import { Bot } from '../index';
 
 export default {

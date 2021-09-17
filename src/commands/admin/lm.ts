@@ -21,7 +21,8 @@ export default {
 				.setDescription('Usuário no qual você deseja ver a última mensagem.')
 				.setRequired(false),
 		),
-
+	bot: false,
+	mod: true,
 	async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
 		let member = interaction.options.getMember('membro') as GuildMember | null;
 		member = member ?? interaction.member as GuildMember;

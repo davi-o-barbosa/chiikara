@@ -12,7 +12,8 @@ export default {
 				.setDescription('O usuário a ser removido')
 				.setRequired(true),
 		),
-
+	bot: true,
+	mod: false,
 	async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
 		const channel = interaction.options.getChannel('canal') as TextChannel | null;
 

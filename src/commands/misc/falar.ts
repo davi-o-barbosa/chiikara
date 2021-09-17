@@ -17,7 +17,8 @@ export default {
 				.setDescription('A mensagem a ser enviada')
 				.setRequired(true),
 		),
-
+	bot: false,
+	mod: true,
 	async execute(interaction: CommandInteraction): Promise<void> {
 		const channel = interaction.options.getChannel('canal') as GuildChannel;
 		const message = interaction.options.getString('mensagem') as string;

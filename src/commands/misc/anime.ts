@@ -12,7 +12,8 @@ export default {
 				.setDescription('Nome do anime para buscar')
 				.setRequired(true),
 		),
-
+	bot: false,
+	mod: false,
 	async execute(interaction: CommandInteraction): Promise<void> {
 		const animeName = interaction.options.getString('nome') as string;
 		const embed = await getAnime(animeName);
