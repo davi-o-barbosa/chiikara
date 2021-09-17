@@ -2,6 +2,7 @@ import { CommandInteraction } from 'discord.js';
 import { PrismaClient } from '@prisma/client';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import bot from './config/bot';
+import mod from './config/mod';
 
 export default {
 	data: new SlashCommandBuilder()
@@ -66,6 +67,11 @@ export default {
 								.setDescription('Canal a ser desprotegido.')
 								.setRequired(true),
 						),
+				)
+				.addSubcommand(subCommand =>
+					subCommand
+						.setName('ver')
+						.setDescription('Ver os canais configurados.'),
 				),
 		)
 
@@ -94,6 +100,11 @@ export default {
 								.setDescription('Cargo a ser removido.')
 								.setRequired(true),
 						),
+				)
+				.addSubcommand(subCommand =>
+					subCommand
+						.setName('ver')
+						.setDescription('Ver os cargos configurados.'),
 				),
 		),
 
@@ -105,6 +116,7 @@ export default {
 				await bot(interaction, prisma);
 				break;
 			case 'mod':
+				await mod(interaction, prisma);
 				break;
 			case 'proteger':
 				break;

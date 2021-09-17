@@ -37,17 +37,17 @@ export default async function bot(interaction: CommandInteraction, prisma: Prism
 	}
 
 	async function view() {
+		if (guildBotChannels.length === 0) return await interaction.reply({ content: 'Você não configurou isso ainda.', ephemeral: true });
 		const string = `<#${guildBotChannels.map(c => c.channelId).join('> <#')}>`;
-		await interaction.reply({ content: 'Canais atualmente configurados para aceitar comandos:\n' + string, ephemeral: true });
+		return await interaction.reply({ content: 'Canais atualmente configurados para aceitar comandos:\n' + string, ephemeral: true });
 	}
 
 	const subCommand = interaction.options.getSubcommand();
-
 	switch (subCommand) {
 		case 'add':
 			await add();
 			break;
-		case 'remove':
+		case 'remover':
 			await remove();
 			break;
 		case 'ver':
