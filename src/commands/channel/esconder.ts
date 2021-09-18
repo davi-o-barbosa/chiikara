@@ -3,6 +3,8 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import { PrismaClient } from '@prisma/client';
 
 export default {
+	bot: true,
+	mod: false,
 	data: new SlashCommandBuilder()
 		.setName('esconder')
 		.setDescription('Esconde um canal do servidor para você.')
@@ -12,8 +14,6 @@ export default {
 				.setDescription('O usuário a ser removido')
 				.setRequired(true),
 		),
-	bot: true,
-	mod: false,
 	async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
 		const channel = interaction.options.getChannel('canal') as TextChannel | null;
 

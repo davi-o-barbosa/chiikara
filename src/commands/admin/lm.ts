@@ -7,22 +7,22 @@ import {
 	MessageActionRow,
 	MessageButton,
 } from 'discord.js';
-
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { PrismaClient } from '@prisma/client';
 
 export default {
+	bot: false,
+	mod: true,
 	data: new SlashCommandBuilder()
 		.setName('lm')
 		.setDescription('Veja a última mensagem de um usuário.')
+		.setDefaultPermission(false)
 		.addUserOption((option) =>
 			option
 				.setName('membro')
 				.setDescription('Usuário no qual você deseja ver a última mensagem.')
 				.setRequired(false),
 		),
-	bot: false,
-	mod: true,
 	async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
 		let member = interaction.options.getMember('membro') as GuildMember | null;
 		member = member ?? interaction.member as GuildMember;

@@ -3,6 +3,8 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import { getAnime } from '../../helpers/anilist';
 
 export default {
+	bot: false,
+	mod: false,
 	data: new SlashCommandBuilder()
 		.setName('anime')
 		.setDescription('Pesquise informações sobre um anime.')
@@ -12,8 +14,6 @@ export default {
 				.setDescription('Nome do anime para buscar')
 				.setRequired(true),
 		),
-	bot: false,
-	mod: false,
 	async execute(interaction: CommandInteraction): Promise<void> {
 		const animeName = interaction.options.getString('nome') as string;
 		const embed = await getAnime(animeName);

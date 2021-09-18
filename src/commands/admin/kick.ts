@@ -2,9 +2,12 @@ import { CommandInteraction, GuildMember } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 
 export default {
+	bot: false,
+	mod: true,
 	data: new SlashCommandBuilder()
 		.setName('kick')
 		.setDescription('Remove um membro do servidor')
+		.setDefaultPermission(false)
 		.addUserOption((option) =>
 			option
 				.setName('membro')
@@ -17,8 +20,6 @@ export default {
 				.setDescription('Motivo para a remoção do usuário')
 				.setRequired(false),
 		),
-	bot: false,
-	mod: true,
 	async execute(interaction: CommandInteraction): Promise<void> {
 		const member = interaction.options.getMember('membro') as GuildMember | null;
 		const reason = interaction.options.getString('motivo') as string | undefined;

@@ -37,6 +37,7 @@ export default async function mod(interaction: CommandInteraction, prisma: Prism
 	}
 
 	async function view() {
+		console.log(interaction?.guild?.commands);
 		if (guildModRoles.length === 0) return await interaction.reply({ content: 'Você não configurou isso ainda.', ephemeral: true });
 		const string = `<@&${guildModRoles.map(c => c.roleId).join('> <@&')}>`;
 		return await interaction.reply({ content: 'Cargos configurados como moderadores:\n' + string, ephemeral: true });

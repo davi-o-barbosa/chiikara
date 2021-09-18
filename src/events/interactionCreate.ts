@@ -16,7 +16,7 @@ export default {
 			const command = commands.get(interaction.commandName);
 			if (!command) return;
 
-			if (command.bot && !guildBotChannels.find(obj => obj.channelId === interaction?.channel?.id)) {
+			if (command.bot && guildBotChannels.length > 0 && !guildBotChannels.find(obj => obj.channelId === interaction?.channel?.id)) {
 				return await interaction.reply({ content: 'Você só pode usar esse comando no canal de bots.', ephemeral: true });
 			}
 

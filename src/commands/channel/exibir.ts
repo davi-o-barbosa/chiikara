@@ -3,11 +3,11 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import { HiddenChannel, PrismaClient } from '@prisma/client';
 
 export default {
+	bot: true,
+	mod: false,
 	data: new SlashCommandBuilder()
 		.setName('exibir')
 		.setDescription('Exibe um menu para você exibir os canais previamente escondidos.'),
-	bot: true,
-	mod: false,
 	async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
 		const hiddenChannel = await prisma.hiddenChannel.findMany({
 			where: {

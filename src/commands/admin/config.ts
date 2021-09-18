@@ -1,4 +1,4 @@
-import { CommandInteraction } from 'discord.js';
+import { CommandInteraction, GuildMember } from 'discord.js';
 import { PrismaClient } from '@prisma/client';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import bot from './config/bot';
@@ -6,10 +6,11 @@ import mod from './config/mod';
 import protect from './config/protect';
 
 export default {
+	bot: false,
+	mod: true,
 	data: new SlashCommandBuilder()
 		.setName('config')
 		.setDescription('Configurar o funcionamento do bot neste servidor.')
-
 		.addSubcommandGroup(subCommandGroup =>
 			subCommandGroup
 				.setName('bot')
@@ -108,10 +109,18 @@ export default {
 						.setDescription('Ver os cargos configurados.'),
 				),
 		),
-	bot: false,
-	mod: true,
 	async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
 		const subCommandGroup = interaction.options.getSubcommandGroup();
+
+		const guildModRoles = await prisma.guildModRoles.findMany({
+			where: { guildId: interaction.guild?.id },
+		});
+
+		const member = interaction.member as GuildMember;
+
+		if (guildModRoles.length === 0 && !member.permissions.has('ADMINISTRATOR')) {
+			return await interaction.reply({ content: 'Você não tem permissão para executar esse comando.', ephemeral: true });
+		}
 
 		switch (subCommandGroup) {
 			case 'bot':
