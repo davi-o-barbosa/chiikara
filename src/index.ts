@@ -9,6 +9,8 @@ export interface Command {
   data: SlashCommandBuilder,
   // Se o comando só deve ser executado nos canais de Bot
   bot: boolean,
+  // Se o comando só puder ser executado por moderadores
+  mod: boolean,
   execute: (interaction: Interaction, prisma: PrismaClient) => Promise<void>
 }
 

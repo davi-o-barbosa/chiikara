@@ -3,10 +3,10 @@ import { CommandInteraction, GuildChannel } from 'discord.js';
 
 export default {
   bot: false,
+  mod: true,
   data: new SlashCommandBuilder()
     .setName('falar')
     .setDescription('Reproduzir uma mensagem em qualquer canal.')
-    .setDefaultPermission(false)
     .addChannelOption((option) =>
       option
         .setName('canal')

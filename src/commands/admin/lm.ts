@@ -12,10 +12,10 @@ import { PrismaClient } from '@prisma/client';
 
 export default {
   bot: false,
+  mod: true,
   data: new SlashCommandBuilder()
     .setName('lm')
     .setDescription('Veja a última mensagem de um usuário.')
-    .setDefaultPermission(false)
     .addUserOption((option) =>
       option
         .setName('membro')

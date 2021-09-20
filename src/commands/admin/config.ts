@@ -7,10 +7,10 @@ import protect from './config/protect';
 
 export default {
   bot: false,
+  mod: true,
   data: new SlashCommandBuilder()
     .setName('config')
     .setDescription('Configurar o funcionamento do bot neste servidor.')
-    .setDefaultPermission(false)
     .addSubcommandGroup(subCommandGroup =>
       subCommandGroup
         .setName('bot')

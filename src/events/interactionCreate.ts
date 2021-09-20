@@ -1,4 +1,4 @@
-import { Interaction } from 'discord.js';
+import { Interaction, GuildMember } from 'discord.js';
 import { Bot } from '..';
 
 export default {
@@ -12,12 +12,21 @@ export default {
       where: { guildId: interaction.guild?.id },
     });
 
+    const guildModRoles = await prisma.guildModRoles.findMany({
+      where: { guildId: interaction.guild?.id },
+    });
+
     try {
       const command = commands.get(interaction.commandName);
       if (!command) return;
 
       if (command.bot && guildBotChannels.length > 0 && !guildBotChannels.find(obj => obj.channelId === interaction?.channel?.id)) {
         return await interaction.reply({ content: 'Você só pode usar esse comando no canal de bots.', ephemeral: true });
+      }
+
+      const member = interaction.member as GuildMember;
+      if (command.mod && !checkRoles(member, guildModRoles.map(r => r.roleId))) {
+        return await interaction.reply({ content: 'Você não tem permissão pra usar esse comando.', ephemeral: true });
       }
 
       await command.execute(interaction, prisma);
@@ -31,3 +40,8 @@ export default {
     }
   },
 };
+
+function checkRoles(member: GuildMember, roles: Array<string>): boolean {
+  if (roles.length === 0 && !member.permissions.has('ADMINISTRATOR')) return false;
+  return member.roles.cache.some(role => roles.includes(role.id));
+}
