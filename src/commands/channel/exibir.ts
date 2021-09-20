@@ -8,6 +8,7 @@ export default {
   data: new SlashCommandBuilder()
     .setName('exibir')
     .setDescription('Exibe um menu para você exibir os canais previamente escondidos.'),
+
   async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
     const hiddenChannel = await prisma.hiddenChannel.findMany({
       where: {

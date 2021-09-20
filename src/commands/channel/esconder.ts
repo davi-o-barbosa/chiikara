@@ -14,11 +14,20 @@ export default {
         .setDescription('O usuário a ser removido')
         .setRequired(true),
     ),
+
   async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
     const channel = interaction.options.getChannel('canal') as TextChannel | null;
 
     if (!channel) {
       return await interaction.reply({ content: 'Esse canal não está disponível', ephemeral: true });
+    }
+
+    const protectedChannels = await prisma.guildProtectedChannels.findMany({
+      where: { channelId: channel.id },
+    });
+
+    if (protectedChannels.find(c => c.channelId === channel.id)) {
+      return await interaction.reply({ content: 'Você não pode esconder esse canal, sinto muito =(', ephemeral: true });
     }
 
     let hiddenChannel = await prisma.hiddenChannel.findFirst({

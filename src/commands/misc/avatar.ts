@@ -14,6 +14,7 @@ export default {
         .setDescription('O usuário que deseja ver o avatar')
         .setRequired(false),
     ),
+
   async execute(interaction: CommandInteraction): Promise<void> {
     let member = interaction.options.getMember('membro') as GuildMember | null;
     member = member ?? interaction.member as GuildMember;
