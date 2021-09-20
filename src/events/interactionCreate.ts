@@ -42,6 +42,6 @@ export default {
 };
 
 function checkRoles(member: GuildMember, roles: Array<string>): boolean {
-  if (roles.length === 0 && !member.permissions.has('ADMINISTRATOR')) return false;
+  if (roles.length === 0 && member.permissions.has('ADMINISTRATOR')) return true;
   return member.roles.cache.some(role => roles.includes(role.id));
 }
