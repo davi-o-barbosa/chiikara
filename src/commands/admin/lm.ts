@@ -12,7 +12,6 @@ import { PrismaClient } from '@prisma/client';
 
 export default {
   bot: false,
-  mod: true,
   data: new SlashCommandBuilder()
     .setName('lm')
     .setDescription('Veja a última mensagem de um usuário.')
@@ -23,6 +22,7 @@ export default {
         .setDescription('Usuário no qual você deseja ver a última mensagem.')
         .setRequired(false),
     ),
+
   async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
     let member = interaction.options.getMember('membro') as GuildMember | null;
     member = member ?? interaction.member as GuildMember;

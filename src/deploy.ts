@@ -4,13 +4,12 @@ import { config } from 'dotenv'; config();
 import { Command } from './index';
 import FastGlob from 'fast-glob';
 
-async function prepareCommands(global: boolean): Promise<Array<Command>> {
+async function prepareCommands(): Promise<Array<Command>> {
   const commandFiles = await FastGlob(['commands/*/**.ts'], { cwd: 'src' });
   const commands: Command[] = [];
 
   for (const file of commandFiles) {
     const importedCommand = (await import('./' + file)).default;
-    if (global && importedCommand.mod) continue;
     commands.push(importedCommand.data.toJSON());
   }
 
@@ -24,36 +23,36 @@ const rest = new REST({ version: '9' }).setToken(process.env.TOKEN as string);
   const args = process.argv[2];
   try {
     if (!args) {
-      const commands = await prepareCommands(true);
+      const commands = await prepareCommands();
       console.log('\n[1] Realizando deploy no servidor de testes.');
       await rest.put(
-        Routes.applicationGuildCommands(process.env.CLIENTID as `${bigint}`, process.env.GUILDID as `${bigint}`),
+        Routes.applicationGuildCommands(process.env.CLIENTID as `${bigint}`, process.env.DEVGUILDID as `${bigint}`),
         { body: commands },
       );
     }
     else if (args == '-clear') {
-      console.log('\n[1] Limpando todos os comandos registrados no servidor.');
+      console.log('\n[1] Limpando todos os comandos registrados no servidor de testes.');
+      await rest.put(
+        Routes.applicationGuildCommands(process.env.CLIENTID as `${bigint}`, process.env.DEVGUILDID as `${bigint}`),
+        { body: [] },
+      );
+    }
+    else if (args == '-dtp') {
+      const commands = await prepareCommands();
+      console.log('\n[1] Realizando deploy no DTP.');
+      await rest.put(
+        Routes.applicationGuildCommands(process.env.CLIENTID as `${bigint}`, process.env.GUILDID as `${bigint}`),
+        { body: commands },
+      );
+    }
+    else if (args == '-clearGlobal') {
+      console.log('\n[1] Limpando deploy no DTP.');
       await rest.put(
         Routes.applicationGuildCommands(process.env.CLIENTID as `${bigint}`, process.env.GUILDID as `${bigint}`),
         { body: [] },
       );
     }
-    else if (args == '-global') {
-      const commands = await prepareCommands(true);
-      console.log('\n[1] Realizando deploy global.');
-      await rest.put(
-        Routes.applicationCommands(process.env.CLIENTID as `${bigint}`),
-        { body: commands },
-      );
-    }
-    else if (args == '-clearGlobal') {
-      console.log('\n[1] Limpando todos os comandos registrados globalmente.');
-      await rest.put(
-        Routes.applicationCommands(process.env.CLIENTID as `${bigint}`),
-        { body: [] },
-      );
-    }
-    console.log('[2] Deploy realizado com sucesso.\n');
+    console.log('[2] Executado com sucesso.\n');
   }
   catch (error) {
     console.error(error);

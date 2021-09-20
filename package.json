@@ -1,10 +1,10 @@
 {
   "name": "chiikara",
   "version": "0.9.0",
-  "description": "",
+  "description": "Um bot para o servidor Debauchy Tea Party!",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "tsnd --ignore-watch node_modules --inspect=0.0.0.0:9229 src/index.ts",
+    "dev": "tsnd --respawn --transpile-only src/index.ts",
     "deploy": "tsnd src/deploy.ts",
     "build": "tsc",
     "start": "node ./build/index.js",

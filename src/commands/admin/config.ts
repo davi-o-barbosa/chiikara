@@ -7,7 +7,6 @@ import protect from './config/protect';
 
 export default {
   bot: false,
-  mod: true,
   data: new SlashCommandBuilder()
     .setName('config')
     .setDescription('Configurar o funcionamento do bot neste servidor.')
@@ -110,6 +109,7 @@ export default {
             .setDescription('Ver os cargos configurados.'),
         ),
     ),
+
   async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
     const subCommandGroup = interaction.options.getSubcommandGroup();
 
