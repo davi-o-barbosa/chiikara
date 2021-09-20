@@ -15,8 +15,8 @@ Comandos:
 			✔ Cargos de ADM @done(21-09-17 13:18)
 
 			Verificação das configurações:
-				☐ Verificar durante a execução de todos os comandos se estão no canal certo
-				☐ Verificar durante comandos de administração se o usuário possui permissão
+				✔ Verificar durante a execução de todos os comandos se estão no canal certo @done(21-09-20 18:18)
+				✔ Verificar durante comandos de administração se o usuário possui permissão @done(21-09-20 18:18)
 				☐ Verificar durante o comando de esconder canais se o canal é protegido
 		
 		✔ Kick @done(21-08-07 02:19)

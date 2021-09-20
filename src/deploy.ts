@@ -19,7 +19,6 @@ async function prepareCommands(): Promise<Array<Command>> {
 const rest = new REST({ version: '9' }).setToken(process.env.TOKEN as string);
 
 (async () => {
-
   const args = process.argv[2];
   try {
     if (!args) {
@@ -37,18 +36,18 @@ const rest = new REST({ version: '9' }).setToken(process.env.TOKEN as string);
         { body: [] },
       );
     }
-    else if (args == '-dtp') {
+    else if (args == '-global') {
       const commands = await prepareCommands();
-      console.log('\n[1] Realizando deploy no DTP.');
+      console.log('\n[1] Realizando deploy Global.');
       await rest.put(
-        Routes.applicationGuildCommands(process.env.CLIENTID as `${bigint}`, process.env.GUILDID as `${bigint}`),
+        Routes.applicationCommands(process.env.CLIENTID as `${bigint}`),
         { body: commands },
       );
     }
     else if (args == '-clearGlobal') {
-      console.log('\n[1] Limpando deploy no DTP.');
+      console.log('\n[1] Limpando deploy global.');
       await rest.put(
-        Routes.applicationGuildCommands(process.env.CLIENTID as `${bigint}`, process.env.GUILDID as `${bigint}`),
+        Routes.applicationCommands(process.env.CLIENTID as `${bigint}`),
         { body: [] },
       );
     }
