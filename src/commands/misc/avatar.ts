@@ -1,6 +1,6 @@
 import { CommandInteraction, GuildMember } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { image } from '../../helpers/embed';
+import { image, base } from '../../helpers/embed';
 
 export default {
   bot: true,
@@ -23,7 +23,7 @@ export default {
 
     if (url == null) {
       return await interaction.reply({
-        content: 'Esse usuário não tem uma foto de perfil.',
+        embeds: [base('Esse usuário não tem uma foto de perfil.', 'error')],
         ephemeral: true,
       });
     }

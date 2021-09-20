@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { CommandInteraction } from 'discord.js';
+import { base } from '../../../helpers/embed';
 
 export default async function mod(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
   const role = interaction.options.getRole('cargo');
@@ -10,7 +11,7 @@ export default async function mod(interaction: CommandInteraction, prisma: Prism
 
   async function add() {
     if (guildModRoles.find(obj => obj.roleId === role?.id)) {
-      return await interaction.reply({ content: 'Esse cargo já se encontra na lista.', ephemeral: true });
+      return await interaction.reply({ embeds: [base('Esse cargo já se encontra na lista.', 'warning')], ephemeral: true });
     }
 
     await prisma.guildModRoles.create({
@@ -20,12 +21,12 @@ export default async function mod(interaction: CommandInteraction, prisma: Prism
       },
     });
 
-    return await interaction.reply({ content: 'Cargo configurado com sucesso!', ephemeral: true });
+    return await interaction.reply({ embeds: [base('Cargo configurado com sucesso!', 'sucess')], ephemeral: true });
   }
 
   async function remove() {
     const roleRecord = guildModRoles.find(obj => obj.roleId === role?.id);
-    if (roleRecord == undefined) return await interaction.reply({ content: 'O cargo não está na minha lista.', ephemeral: true });
+    if (roleRecord == undefined) return await interaction.reply({ embeds: [base('O cargo não está na minha lista.', 'error')], ephemeral: true });
 
     await prisma.guildModRoles.delete({
       where: {
@@ -33,13 +34,13 @@ export default async function mod(interaction: CommandInteraction, prisma: Prism
       },
     });
 
-    return await interaction.reply({ content: 'O cargo foi removido com sucesso!', ephemeral: true });
+    return await interaction.reply({ embeds: [base('O cargo foi removido com sucesso!', 'sucess')], ephemeral: true });
   }
 
   async function view() {
-    if (guildModRoles.length === 0) return await interaction.reply({ content: 'Você não configurou isso ainda.', ephemeral: true });
+    if (guildModRoles.length === 0) return await interaction.reply({ embeds: [base('Você não configurou isso ainda.', 'warning')], ephemeral: true });
     const string = `<@&${guildModRoles.map(c => c.roleId).join('> <@&')}>`;
-    return await interaction.reply({ content: 'Cargos configurados como moderadores:\n' + string, ephemeral: true });
+    return await interaction.reply({ embeds: [base('Cargos configurados como moderadores:\n' + string, 'info')], ephemeral: true });
   }
 
   const subCommand = interaction.options.getSubcommand();

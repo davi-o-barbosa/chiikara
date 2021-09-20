@@ -1,6 +1,7 @@
 import { CommandInteraction, MessageActionRow, MessageSelectMenu, SelectMenuInteraction, Message, PermissionOverwrites } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { HiddenChannel, PrismaClient } from '@prisma/client';
+import { base } from '../../helpers/embed';
 
 export default {
   bot: true,
@@ -17,7 +18,7 @@ export default {
       },
     });
 
-    if (hiddenChannel.length === 0) return await interaction.reply({ content: 'Você não tem canais escondidos', ephemeral: true });
+    if (hiddenChannel.length === 0) return await interaction.reply({ embeds: [base('Você não tem canais escondidos', 'info')], ephemeral: true });
 
     const options = [];
     for (const channel of hiddenChannel) {
@@ -79,6 +80,6 @@ export default {
       }
     }
 
-    await interaction.editReply({ content: 'Canais exibidos com sucesso!', components: [] });
+    await interaction.editReply({ content: '-', embeds: [base('Canais exibidos com sucesso!', 'sucess')], components: [] });
   },
 };

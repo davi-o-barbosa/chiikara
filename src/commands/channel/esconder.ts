@@ -1,6 +1,7 @@
 import { CommandInteraction, TextChannel } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { PrismaClient } from '@prisma/client';
+import { base } from '../../helpers/embed';
 
 export default {
   bot: true,
@@ -19,7 +20,7 @@ export default {
     const channel = interaction.options.getChannel('canal') as TextChannel | null;
 
     if (!channel) {
-      return await interaction.reply({ content: 'Esse canal não está disponível', ephemeral: true });
+      return await interaction.reply({ embeds: [ base('Esse canal não está disponível', 'error')], ephemeral: true });
     }
 
     const protectedChannels = await prisma.guildProtectedChannels.findMany({
@@ -27,7 +28,7 @@ export default {
     });
 
     if (protectedChannels.find(c => c.channelId === channel.id)) {
-      return await interaction.reply({ content: 'Você não pode esconder esse canal, sinto muito =(', ephemeral: true });
+      return await interaction.reply({ embeds:[ base('Você não pode esconder esse canal, sinto muito =(', 'warning')], ephemeral: true });
     }
 
     let hiddenChannel = await prisma.hiddenChannel.findFirst({
@@ -38,7 +39,7 @@ export default {
     });
 
     if (hiddenChannel) {
-      return await interaction.reply({ content: 'Você já escondeu esse canal.', ephemeral: true });
+      return await interaction.reply({ embeds:[ base('Você já escondeu esse canal.', 'warning')], ephemeral: true });
     }
 
     const permissions = channel.permissionOverwrites;
@@ -55,6 +56,6 @@ export default {
       },
     });
 
-    await interaction.reply({ content: `O canal \`#${channel.name}\` foi escondido pra você.`, ephemeral: true });
+    await interaction.reply({ embeds:[ base(`O canal \`#${channel.name}\` foi escondido pra você.`, 'sucess')], ephemeral: true });
   },
 };

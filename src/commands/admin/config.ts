@@ -4,6 +4,7 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import bot from './config/bot';
 import mod from './config/mod';
 import protect from './config/protect';
+import { base } from '../../helpers/embed';
 
 export default {
   bot: false,
@@ -120,7 +121,7 @@ export default {
     const member = interaction.member as GuildMember;
 
     if (guildModRoles.length === 0 && !member.permissions.has('ADMINISTRATOR')) {
-      return await interaction.reply({ content: 'Você não tem permissão para executar esse comando.', ephemeral: true });
+      return await interaction.reply({ embeds: [base('Você não tem permissão para executar esse comando.', 'error')], ephemeral: true });
     }
 
     switch (subCommandGroup) {

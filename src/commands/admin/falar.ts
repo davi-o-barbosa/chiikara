@@ -1,5 +1,6 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction, GuildChannel } from 'discord.js';
+import { base } from '../../helpers/embed';
 
 export default {
   bot: false,
@@ -26,14 +27,14 @@ export default {
 
     if (!channel.isText()) {
       return await interaction.reply({
-        content: 'Preciso que você marque um canal de texto!',
+        embeds: [base('Preciso que você marque um canal de texto!', 'warning')],
         ephemeral: true,
       });
     }
 
     await channel.send(message);
     return await interaction.reply({
-      content: 'Mensagem enviada com sucesso!',
+      embeds:[base('Mensagem enviada com sucesso!', 'sucess')],
       ephemeral: true,
     });
   },

@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { CommandInteraction, GuildChannel } from 'discord.js';
+import { base } from '../../../helpers/embed';
 
 export default async function bot(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
   const channel = interaction.options.getChannel('canal') as GuildChannel | null;
@@ -10,7 +11,7 @@ export default async function bot(interaction: CommandInteraction, prisma: Prism
 
   async function add() {
     if (guildBotChannels.find(obj => obj.channelId === channel?.id)) {
-      return await interaction.reply({ content: 'O canal já está na minha lista.', ephemeral: true });
+      return await interaction.reply({ embeds: [base('O canal já está na minha lista.', 'info')], ephemeral: true });
     }
 
     await prisma.guildBotChannels.create({
@@ -20,12 +21,12 @@ export default async function bot(interaction: CommandInteraction, prisma: Prism
       },
     });
 
-    return await interaction.reply({ content: 'O canal foi adicionado com sucesso!', ephemeral: true });
+    return await interaction.reply({ embeds: [base('O canal foi adicionado com sucesso!', 'sucesso')], ephemeral: true });
   }
 
   async function remove() {
     const channelRecord = guildBotChannels.find(obj => obj.channelId === channel?.id);
-    if (channelRecord == undefined) return await interaction.reply({ content: 'O canal não está na minha lista.', ephemeral: true });
+    if (channelRecord == undefined) return await interaction.reply({ embeds: [base('O canal não está na minha lista.', 'info')], ephemeral: true });
 
     await prisma.guildBotChannels.delete({
       where: {
@@ -33,13 +34,13 @@ export default async function bot(interaction: CommandInteraction, prisma: Prism
       },
     });
 
-    return await interaction.reply({ content: 'O canal foi removido com sucesso!', ephemeral: true });
+    return await interaction.reply({ embeds: [base('O canal foi removido com sucesso!', 'sucess')], ephemeral: true });
   }
 
   async function view() {
-    if (guildBotChannels.length === 0) return await interaction.reply({ content: 'Você não configurou isso ainda.', ephemeral: true });
+    if (guildBotChannels.length === 0) return await interaction.reply({ embeds: [base('Você não configurou isso ainda.', 'warning')], ephemeral: true });
     const string = `<#${guildBotChannels.map(c => c.channelId).join('> <#')}>`;
-    return await interaction.reply({ content: 'Canais atualmente configurados para aceitar comandos:\n' + string, ephemeral: true });
+    return await interaction.reply({ embeds: [base('Canais atualmente configurados para aceitar comandos:\n' + string, 'info')], ephemeral: true });
   }
 
   const subCommand = interaction.options.getSubcommand();

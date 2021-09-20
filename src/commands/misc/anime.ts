@@ -1,6 +1,8 @@
 import { CommandInteraction } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { getAnime } from '../../helpers/anilist';
+import { base } from '../../helpers/embed';
+
 
 export default {
   bot: false,
@@ -21,7 +23,7 @@ export default {
 
     if (!embed) {
       return await interaction.reply({
-        content: 'Desculpa, não pude encontrar o anime!',
+        embeds: [base('Desculpa, não pude encontrar o anime!', 'error')],
         ephemeral: true,
       });
     }

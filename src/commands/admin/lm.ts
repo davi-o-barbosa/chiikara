@@ -9,6 +9,7 @@ import {
 } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { PrismaClient } from '@prisma/client';
+import { base } from '../../helpers/embed';
 
 export default {
   bot: false,
@@ -38,19 +39,19 @@ export default {
 
     if (!lMessage) {
       return await interaction.reply({
-        content: 'Esse usuário não possui uma mensagem salva nos meus registros.',
+        embeds: [base('Esse usuário não possui uma mensagem salva nos meus registros.', 'error')],
         ephemeral: true,
       });
     }
 
     const channel = await interaction.guild?.channels.fetch(lMessage.channelId).catch(async () => {
-      await interaction.reply({ content: 'O canal dessa mensagem não está mais disponível.', ephemeral: true });
+      await interaction.reply({ embeds: [base('O canal dessa mensagem não está mais disponível.', 'error')], ephemeral: true });
     }) as TextChannel;
 
     if (!channel) return;
 
     const fetchedMessage = await channel.messages.fetch(lMessage.id).catch(async () => {
-      return await interaction.reply({ content: 'A mensagem enviada por este usuário não existe mais.', ephemeral: true });
+      return await interaction.reply({ embeds: [base('A mensagem enviada por este usuário não existe mais.', 'error')], ephemeral: true });
     }) as Message;
 
     if (!fetchedMessage) return;
