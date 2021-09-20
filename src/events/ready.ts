@@ -1,7 +1,7 @@
 export default {
-	name: 'ready',
-	once: true,
-	execute(): void {
-		console.log('Bot online');
-	},
+  name: 'ready',
+  once: true,
+  execute(): void {
+    console.log('Bot online');
+  },
 };
