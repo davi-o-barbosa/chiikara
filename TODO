@@ -1,24 +1,39 @@
 Issue #1:
+	Comando avançando de enviar mensagens 
 	☐ Criar tabela na database
 	☐ Adicionar uma option ao comando 'falar' que permite o usuário a salvar a mensagem enviada na database para futuras edições
+
 	Criar um novo comando no qual permite enviar embeds em vez de mensagens simples:
-		☐ Modificar o comando Falar
-		ou
-		☐ Criar um novo comando
+		O nome do comando pode ser 'embed'
+		☐ Uma option pra cada propriedade do embed, como title, description, color, thumbnail, image
+		☐ Uma option que salva a mensagem na database para futuras edições
+
 	Criar um comando que permite editar as mensagens salvas:
-		O usuário deve inserir o id da mensagem
+		Comando deve ter a option de canal, para o usuário selecionar o canal onde a mensagem se encontra.
+		O usuário deve inserir o id da mensagem, para o bot poder requisitar ao Discord.
+		☐ Pensar na interface do comando
 
-Comando ausentes:	
-	☐ Arrumar o problema de ter caracteres demais na mensagem (Caso a resposta do bot tenha mais de 2000 caracteres ocorre um erro)
-	☐ Enviar para o canal da moderação automaticamente
+Issue #2:
+	Mudar a estrutura da database para uma lógica relacional 
+	☐ Aprender a usar o prisma para isso
+	☐ Modificar a estrutura para todos os campos relacionados à guild serem relacionais com uma tabela Guild
+	☐ Profit!
 
-Anilist:
-  ☐ Busca de mangá
+Issue #3:
+	Editar README.md 
+	☐ Adicionar uma imagem para ficar mais bonito
+	☐ Descrição sobre o bot
+	☐ Verificar e atualizar as instruções
 
-Dados de RPG (Pedido do Pedro):
+Issue #4:
+	Comandos e Eventos não podem ser carregados quando se dá build no projeto
+	☐ Pensar em uma solução
+
+Issue #5:	
+	Arrumar problema de limite de caracteres no comando 'ausentes' 
+	☐ Provavelmente apenas cortar a mensagem em vários pedaços e envia-los um por um
+
+Issue #6:
+	Comando para dados de RPG 
 	☐ Função básica
 	☐ Dados avançados
-
-Github:
-	☐ README
-	☐ Wiki
