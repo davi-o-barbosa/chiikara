@@ -26,4 +26,5 @@ GUILDID=ID do cliente do bot
 5) `yarn dev` - Bot será executado usando [ts-node-dev](https://www.npmjs.com/package/ts-node-dev), onde a cada mudança nos arquivos o bot será reiniciado. Não sei o motivo, mas essa função de reiniciar **não** funciona em Linux.
 
 ## Instruções para uso:
-[Issue #4](https://github.com/deiveria/chiikara/issues/4)
+1) `yarn build` - Compila o código em typescript na pasta `./build`.
+2) `yarn start` - Irá executar o código compilado usando Node.
