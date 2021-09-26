@@ -44,4 +44,5 @@ commandFiles.forEach(async (file) => {
   commands.set(command.data.name, command);
 });
 
+console.log('\x1b[1m\x1b[35m' + `Running in \x1b[32m${process.env.NODE_ENV} \x1b[0m`);
 client.login(process.env.TOKEN);
