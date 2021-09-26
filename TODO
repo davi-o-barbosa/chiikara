@@ -19,9 +19,6 @@ Comandos:
 				✔ Verificar durante comandos de administração se o usuário possui permissão @done(21-09-20 18:18)
 				✔ Verificar durante o comando de esconder canais se o canal é protegido @done(21-09-20 18:41)
 		
-		✘ Kick @cancelled(21-09-20 18:41)
-		✘ Ban @cancelled(21-09-20 18:41)
-		✘ Log automático @cancelled(21-09-11 23:48)
 		☐ Função que a Mika pediu para a Chiikara mandar mensagens e poder edita-las
 
 		Armazenar mensagens:
@@ -29,8 +26,12 @@ Comandos:
 			✔ Armazenar dados da mensagem automaticamente @done(21-08-24 13:28)
 			✔ Busca pela última mensagem por comando @done(21-08-24 13:28)
 
+			Comando lm:
+				✔ Adicionar uma opção para escolher se quer exibir a mensagem para outros usuários. @done(21-09-26 00:44)
+
 			Comando ausentes:
 				✔ Listar todos os membros do servidor com [x] dias sem mensagens @done(21-09-25 21:59)
+				☐ Arrumar o problema de ter caracteres demais na mensagem (Caso a resposta do bot tenha mais de 2000 caracteres ocorre um erro)
 				☐ Enviar para o canal da moderação automaticamente
 
 	Anilist:
@@ -41,7 +42,7 @@ Comandos:
 		✔ Criar tabela no banco de dados @done(21-08-06 12:59)
 		✔ Comando para esconder @done(21-08-24 15:22)
 		✔ Comando para exibir @done(21-08-24 15:22)
-		✘ Comando para listar os canais escondidos @cancelled(21-08-24 17:30)
+		✔ Mudar a mensagem do comando exibir para não usar o campo 'content', apenas 'embeds', assim a resposta de sucesso não tem o caractere extra. @done(21-09-26 00:37)
 		
 	Misc:
 		✔ Avatar @done(21-08-07 02:19)

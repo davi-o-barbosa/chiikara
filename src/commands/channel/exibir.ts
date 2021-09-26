@@ -36,7 +36,7 @@ export default {
       );
 
     const message = await interaction.reply({
-      content: 'Escolha os canais que deseja ver novamente: ',
+      embeds: [base('Escolha os canais que deseja ver novamente: ')],
       components: [row],
       fetchReply: true,
     }) as Message;
@@ -81,6 +81,6 @@ export default {
       }
     }
 
-    await interaction.editReply({ content: '-', embeds: [base('Canais exibidos com sucesso!', 'sucess')], components: [] });
+    await interaction.editReply({ embeds: [base('Canais exibidos com sucesso!', 'sucess')], components: [] });
   },
 };

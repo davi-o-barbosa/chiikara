@@ -29,7 +29,6 @@ export default {
       if (command.mod && !checkRoles(member, guildModRoles.map(r => r.roleId))) {
         return await interaction.reply({ embeds: [base('Você não tem permissão pra usar esse comando.', 'error')], ephemeral: true });
       }
-
       await command.execute(interaction, prisma);
     }
     catch (e) {

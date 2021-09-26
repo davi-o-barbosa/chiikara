@@ -1,6 +1,6 @@
 {
   "name": "chiikara",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Um bot para o servidor Debauchy Tea Party!",
   "main": "src/index.ts",
   "scripts": {

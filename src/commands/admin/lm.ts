@@ -17,16 +17,25 @@ export default {
   data: new SlashCommandBuilder()
     .setName('lm')
     .setDescription('Veja a última mensagem de um usuário.')
-    .addUserOption((option) =>
+    .addUserOption(option =>
       option
         .setName('membro')
         .setDescription('Usuário no qual você deseja ver a última mensagem.')
+        .setRequired(false),
+    )
+    .addBooleanOption(option =>
+      option
+        .setName('visivel')
+        .setDescription('Se a resposta do bot deve ser visível para outros membros ou não.')
         .setRequired(false),
     ),
 
   async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
     let member = interaction.options.getMember('membro') as GuildMember | null;
     member = member ?? interaction.member as GuildMember;
+
+    let ephemeral = interaction.options.getBoolean('visivel') as boolean | undefined;
+    ephemeral = ephemeral ?? false;
 
     const lMessage = await prisma.lastMessage.findUnique({
       where: {
@@ -67,6 +76,7 @@ export default {
     return await interaction.reply({
       embeds: [generateEmbed(fetchedMessage)],
       components: [row],
+      ephemeral: !ephemeral,
     });
   },
 };
