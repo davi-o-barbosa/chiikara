@@ -71,6 +71,7 @@ export default {
       const permissions = channel.permissionOverwrites;
       await permissions.edit(interaction.user.id, {
         VIEW_CHANNEL: null,
+        SEND_MESSAGES: null,
       }, { reason: `${interaction.user.tag} usou o comando para exibir o canal.` });
 
       const newPerms = permissions.cache.get(interaction.user.id) as PermissionOverwrites;
