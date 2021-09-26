@@ -23,11 +23,11 @@ export default {
       return await interaction.reply({ embeds: [ base('Esse canal não está disponível', 'error')], ephemeral: true });
     }
 
-    const protectedChannels = await prisma.guildProtectedChannels.findMany({
+    const protectedChannel = await prisma.guildProtectedChannels.findFirst({
       where: { channelId: channel.id },
     });
 
-    if (protectedChannels.find(c => c.channelId === channel.id)) {
+    if (protectedChannel) {
       return await interaction.reply({ embeds:[ base('Você não pode esconder esse canal, sinto muito =(', 'warning')], ephemeral: true });
     }
 
