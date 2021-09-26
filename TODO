@@ -1,63 +1,23 @@
-Database:
-	Verificar a fundo a organização da Database:
-		☐ Começar
+Issue #1:
+	☐ Criar tabela na database
+	☐ Adicionar uma option ao comando 'falar' que permite o usuário a salvar a mensagem enviada na database para futuras edições
+	Criar um novo comando no qual permite enviar embeds em vez de mensagens simples:
+		☐ Modificar o comando Falar
+		ou
+		☐ Criar um novo comando
+	Criar um comando que permite editar as mensagens salvas:
+		O usuário deve inserir o id da mensagem
 
-Comandos:
-	✔ Melhora visual das respostas @done(21-09-20 19:58)
-	✔ Rever textos para manter a clareza @done(21-09-20 19:58)
+Comando ausentes:	
+	☐ Arrumar o problema de ter caracteres demais na mensagem (Caso a resposta do bot tenha mais de 2000 caracteres ocorre um erro)
+	☐ Enviar para o canal da moderação automaticamente
 
-	Admin:
-		Configuração do servidor:
-			✔ Banco de dados @done(21-08-06 12:59)
+Anilist:
+  ☐ Busca de mangá
 
-			✔ Configurar canais de Bot @done(21-09-11 23:45)
-			✔ Proteger canais @done(21-09-25 21:59)
-			✔ Cargos de ADM @done(21-09-17 13:18)
-
-			Verificação das configurações:
-				✔ Verificar durante a execução de todos os comandos se estão no canal certo @done(21-09-25 21:59)
-				✔ Verificar durante comandos de administração se o usuário possui permissão @done(21-09-20 18:18)
-				✔ Verificar durante o comando de esconder canais se o canal é protegido @done(21-09-20 18:41)
-		
-		☐ Função que a Mika pediu para a Chiikara mandar mensagens e poder edita-las
-
-		Armazenar mensagens:
-			✔ Criar tabela no banco de dados @done(21-08-06 12:59)
-			✔ Armazenar dados da mensagem automaticamente @done(21-08-24 13:28)
-			✔ Busca pela última mensagem por comando @done(21-08-24 13:28)
-
-			Comando lm:
-				✔ Adicionar uma opção para escolher se quer exibir a mensagem para outros usuários. @done(21-09-26 00:44)
-
-			Comando ausentes:
-				✔ Listar todos os membros do servidor com [x] dias sem mensagens @done(21-09-25 21:59)
-				☐ Arrumar o problema de ter caracteres demais na mensagem (Caso a resposta do bot tenha mais de 2000 caracteres ocorre um erro)
-				☐ Enviar para o canal da moderação automaticamente
-
-	Anilist:
-		✔ Busca de anime @done(21-08-10 15:48)
-		☐ Busca de mangá
-
-	Canais:
-		✔ Criar tabela no banco de dados @done(21-08-06 12:59)
-		✔ Comando para esconder @done(21-08-24 15:22)
-		✔ Comando para exibir @done(21-08-24 15:22)
-		✔ Mudar a mensagem do comando exibir para não usar o campo 'content', apenas 'embeds', assim a resposta de sucesso não tem o caractere extra. @done(21-09-26 00:37)
-		
-		Esconder:
-			✔ [Linha 26] Não faz sentido buscar baseado no id do canal e depois verificar, corrigir isso @done(21-09-26 09:30)
-
-	Misc:
-		✔ Avatar @done(21-08-07 02:19)
-		✔ Falar @done(21-08-07 02:36)
-
-		Dados de RPG (Pedido do Pedro):
-			☐ Função básica
-			☐ Dados avançados
-
-Database:
-	✔ Diagrama @done(21-08-06 12:59)
-	✔ Criar tabelas @done(21-08-06 12:59)
+Dados de RPG (Pedido do Pedro):
+	☐ Função básica
+	☐ Dados avançados
 
 Github:
 	☐ README
