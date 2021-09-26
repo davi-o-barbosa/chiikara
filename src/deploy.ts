@@ -25,14 +25,14 @@ const rest = new REST({ version: '9' }).setToken(process.env.TOKEN as string);
       const commands = await prepareCommands();
       console.log('\n[1] Realizando deploy no servidor de testes.');
       await rest.put(
-        Routes.applicationGuildCommands(process.env.CLIENTID as `${bigint}`, process.env.DEVGUILDID as `${bigint}`),
+        Routes.applicationGuildCommands(process.env.CLIENTID as `${bigint}`, process.env.GUILDID as `${bigint}`),
         { body: commands },
       );
     }
     else if (args == '-clear') {
       console.log('\n[1] Limpando todos os comandos registrados no servidor de testes.');
       await rest.put(
-        Routes.applicationGuildCommands(process.env.CLIENTID as `${bigint}`, process.env.DEVGUILDID as `${bigint}`),
+        Routes.applicationGuildCommands(process.env.CLIENTID as `${bigint}`, process.env.GUILDID as `${bigint}`),
         { body: [] },
       );
     }

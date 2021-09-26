@@ -18,7 +18,7 @@ export interface Bot {
   prisma: PrismaClient
 }
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });
 const commands = new Collection<string, Command>();
 const prisma = new PrismaClient();
 
