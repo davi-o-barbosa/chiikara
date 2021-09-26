@@ -24,7 +24,10 @@ const prisma = new PrismaClient();
 
 const bot: Bot = { client, commands, prisma };
 
-const eventFiles = FastGlob.sync(['events/**.ts'], { cwd: 'src' });
+const fileExtension = process.env.NODE_ENV === 'production' ? 'js' : 'ts';
+const cwd = process.env.NODE_ENV === 'production' ? 'build' : 'src';
+
+const eventFiles = FastGlob.sync([`events/**.${fileExtension}`], { cwd });
 eventFiles.forEach(async (file) => {
   const event = (await import('./' + file)).default;
   if (event.once) {
@@ -35,7 +38,7 @@ eventFiles.forEach(async (file) => {
   }
 });
 
-const commandFiles = FastGlob.sync(['commands/*/**.ts'], { cwd: 'src' });
+const commandFiles = FastGlob.sync([`commands/*/**.${fileExtension}`], { cwd });
 commandFiles.forEach(async (file) => {
   const command = (await import('./' + file)).default;
   commands.set(command.data.name, command);
