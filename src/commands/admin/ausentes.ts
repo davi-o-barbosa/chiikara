@@ -51,8 +51,8 @@ export default {
       if (member.user.bot) continue;
 
       if (lm == null) {
-        const daysSinceJoined = getDaysDiff(member.joinedAt as Date, interaction.createdAt);
-        if (daysSinceJoined >= time) response += `<@${member.id}> - Entrou há **${daysSinceJoined}** dias e não tem mensagens no registro.\n`;
+        // const daysSinceJoined = getDaysDiff(member.joinedAt as Date, interaction.createdAt);
+        // if (daysSinceJoined >= time) response += `<@${member.id}> - Entrou há **${daysSinceJoined}** dias e não tem mensagens no registro.\n`;
         continue;
       }
 
