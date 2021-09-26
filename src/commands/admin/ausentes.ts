@@ -31,7 +31,6 @@ export default {
   async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
     const time = interaction.options.getInteger('tempo') as number;
     const role = interaction.options.getRole('cargo') as Role;
-
     let nomsg = interaction.options.getBoolean('nomsg') as boolean | undefined;
     nomsg = nomsg ?? false;
 
@@ -45,6 +44,8 @@ export default {
     let temp = '';
     let count = 0;
     for await (const member of role.members.values()) {
+      if (member.user.bot) continue;
+
       const lm = await prisma.lastMessage.findUnique({
         where: {
           userId_guildId: {
@@ -53,8 +54,6 @@ export default {
           },
         },
       });
-
-      if (member.user.bot) continue;
 
       if (lm == null) {
         if (!nomsg) continue;
