@@ -25,10 +25,6 @@ Issue #3:
 	☐ Descrição sobre o bot
 	☐ Verificar e atualizar as instruções
 
-Issue #4:
-	Comandos e Eventos não podem ser carregados quando se dá build no projeto
-	☐ Pensar em uma solução
-
 Issue #5:	
 	Arrumar problema de limite de caracteres no comando 'ausentes' 
 	☐ Provavelmente apenas cortar a mensagem em vários pedaços e envia-los um por um
