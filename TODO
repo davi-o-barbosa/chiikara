@@ -11,11 +11,11 @@ Comandos:
 			✔ Banco de dados @done(21-08-06 12:59)
 
 			✔ Configurar canais de Bot @done(21-09-11 23:45)
-			☐ Proteger canais
+			✔ Proteger canais @done(21-09-25 21:59)
 			✔ Cargos de ADM @done(21-09-17 13:18)
 
 			Verificação das configurações:
-				✔ Verificar durante a execução de todos os comandos se estão no canal certo @done(21-09-20 18:18)
+				✔ Verificar durante a execução de todos os comandos se estão no canal certo @done(21-09-25 21:59)
 				✔ Verificar durante comandos de administração se o usuário possui permissão @done(21-09-20 18:18)
 				✔ Verificar durante o comando de esconder canais se o canal é protegido @done(21-09-20 18:41)
 		
@@ -30,7 +30,7 @@ Comandos:
 			✔ Busca pela última mensagem por comando @done(21-08-24 13:28)
 
 			Comando ausentes:
-				☐ Listar todos os membros do servidor com [x] dias sem mensagens
+				✔ Listar todos os membros do servidor com [x] dias sem mensagens @done(21-09-25 21:59)
 				☐ Enviar para o canal da moderação automaticamente
 
 	Anilist:

@@ -20,11 +20,19 @@ export default {
         .setName('tempo')
         .setDescription('O número de dias sem mensagens de um usuário.')
         .setRequired(true),
+    )
+    .addBooleanOption(option =>
+      option
+        .setName('visivel')
+        .setDescription('Se a resposta do bot deve ser visível para outros membros ou não.')
+        .setRequired(false),
     ),
 
   async execute(interaction: CommandInteraction, prisma: PrismaClient): Promise<void> {
     const time = interaction.options.getInteger('tempo') as number;
     const role = interaction.options.getRole('cargo') as Role;
+    let ephemeral = interaction.options.getBoolean('visivel') as boolean | undefined;
+    ephemeral = ephemeral ?? false;
 
     await interaction.guild?.members.fetch();
 
@@ -51,8 +59,8 @@ export default {
       const daysWithoutMessage = getDaysDiff(lm?.createdAt as Date, interaction.createdAt);
       if (daysWithoutMessage >= time) response += `<@${member.id}> - **${daysWithoutMessage}** dias desde a última mensagem.\n`;
     }
-    if (response.length === initialSize) return await interaction.reply({ embeds: [base('Nenhum membro se encaixa nos requisitos.', 'warning')], ephemeral: true });
-    await interaction.reply({ content: response, ephemeral: true });
+    if (response.length === initialSize) return await interaction.reply({ embeds: [base('Nenhum membro se encaixa nos requisitos.', 'warning')], ephemeral: !ephemeral });
+    await interaction.reply({ content: response, ephemeral: !ephemeral });
   },
 };
 
