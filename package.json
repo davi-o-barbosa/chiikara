@@ -4,7 +4,7 @@
   "description": "Um bot para o servidor Debauchy Tea Party!",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "tsnd --respawn --transpile-only src/index.ts",
+    "dev": "tsnd --respawn --transpile-only --exit-child --ignore-watch node_modules -- src/index.ts",
     "deploy": "tsnd src/deploy.ts",
     "build": "tsc",
     "start": "node ./build/index.js",

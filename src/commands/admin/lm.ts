@@ -82,14 +82,11 @@ export default {
 };
 
 function generateEmbed(message: Message): MessageEmbed {
-  const date = new Date(message.createdAt);
-  const string = date.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
-
   return new MessageEmbed()
     .setTitle(`Última mensagem do(a) ${message.author.tag}`)
     .addField('Conteúdo', message.content, true)
     .addField('Canal', `<#${message.channel.id}>`, true)
-    .addField('Data', string)
+    .addField('Data', `<t:${Math.floor(message.createdTimestamp / 1000)}>`)
     .setColor('RANDOM')
     .setThumbnail(message.author.avatarURL() ?? 'https://discord.com/assets/9f6f9cd156ce35e2d94c0e62e3eff462.png');
 }

@@ -73,10 +73,9 @@ export async function getAnime(anime: string): Promise<MessageEmbed | null> {
     if (!data.nextAiringEpisode.airingAt) return embed;
 
     const episode = data.nextAiringEpisode.episode;
-    const date = new Date(data.nextAiringEpisode.airingAt * 1000);
-    const string = date.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+    const time = `<t:${data.nextAiringEpisode.airingAt}:R>`;
 
-    embed.addField('Próximo episódio: ', `**Episódio:** ${episode}\n**Horário:** ${string}`, true);
+    embed.addField('Próximo episódio: ', `**Episódio:** ${episode}\n**Horário:** ${time}`, true);
   }
 
   return embed;
